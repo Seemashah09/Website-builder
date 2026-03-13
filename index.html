@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create a website for free online without coding. Learn how to build professional websites in minutes using free tools like Canva AI and GitHub.">
+  <meta name="keywords" content="create website online free, free website builder, how to make website without coding, free professional email">
+  <title>BuildSiteFree.com — Create a Website for Free Online</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'display': ['Space Grotesk', 'sans-serif'],
+            'body': ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            primary: '#6366f1',
+            secondary: '#0ea5e9',
+            accent: '#f59e0b',
+            dark: '#1e1b4b',
+            light: '#f8fafc'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body { height: 100%; }
+    .gradient-bg {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+    }
+    .card-gradient {
+      background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+    }
+    .glow {
+      box-shadow: 0 0 60px rgba(99, 102, 241, 0.3);
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #6366f1, #0ea5e9);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .page { display: none; }
+    .page.active { display: block; }
+    .step-number {
+      background: linear-gradient(135deg, #6366f1 0%, #0ea5e9 100%);
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body bg-light text-dark overflow-auto">
+  <div id="app-wrapper" class="w-full min-h-full flex flex-col">
+   <!-- Navigation -->
+   <nav class="gradient-bg sticky top-0 z-50 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex items-center justify-between h-16">
+      <a href="#" onclick="navigateTo('home')" class="flex items-center space-x-2">
+       <div class="w-10 h-10 bg-gradient-to-br from-indigo-400 to-cyan-400 rounded-lg flex items-center justify-center">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+        </svg>
+       </div><span id="site-title" class="font-display font-bold text-xl text-white">BuildSiteFree.com</span> </a> <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-6">
+       <a href="#" onclick="navigateTo('home')" class="nav-link text-white/90 hover:text-white transition-colors">Home</a> <a href="#" onclick="navigateTo('blog')" class="nav-link text-white/90 hover:text-white transition-colors">Blog</a> <a href="#" onclick="navigateTo('email')" class="nav-link text-white/90 hover:text-white transition-colors">Free Email</a> <a href="#" onclick="navigateTo('about')" class="nav-link text-white/90 hover:text-white transition-colors">About</a> <a href="#" onclick="navigateTo('contact')" class="nav-link text-white/90 hover:text-white transition-colors">Contact</a>
+      </div><!-- Mobile Menu Button --> <button onclick="toggleMobileMenu()" class="md:hidden text-white p-2">
+       <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+       </svg>
+       <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+       </svg></button>
+     </div><!-- Mobile Menu -->
+     <div id="mobile-menu" class="hidden md:hidden pb-4">
+      <div class="flex flex-col space-y-3">
+       <a href="#" onclick="navigateTo('home'); toggleMobileMenu();" class="text-white/90 hover:text-white py-2">Home</a> <a href="#" onclick="navigateTo('blog'); toggleMobileMenu();" class="text-white/90 hover:text-white py-2">Blog</a> <a href="#" onclick="navigateTo('email'); toggleMobileMenu();" class="text-white/90 hover:text-white py-2">Free Email</a> <a href="#" onclick="navigateTo('about'); toggleMobileMenu();" class="text-white/90 hover:text-white py-2">About</a> <a href="#" onclick="navigateTo('contact'); toggleMobileMenu();" class="text-white/90 hover:text-white py-2">Contact</a> <a href="#" onclick="navigateTo('privacy'); toggleMobileMenu();" class="text-white/90 hover:text-white py-2">Privacy</a> <a href="#" onclick="navigateTo('disclaimer'); toggleMobileMenu();" class="text-white/90 hover:text-white py-2">Disclaimer</a>
+      </div>
+     </div>
+    </div>
+   </nav><!-- Main Content Area -->
+   <main class="flex-1 w-full">
+    <!-- HOME PAGE -->
+    <div id="page-home" class="page active">
+     <!-- Hero Section -->
+     <section class="gradient-bg relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10">
+       <div class="absolute top-20 left-10 w-72 h-72 bg-cyan-400 rounded-full blur-3xl"></div>
+       <div class="absolute bottom-20 right-10 w-96 h-96 bg-indigo-400 rounded-full blur-3xl"></div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative">
+       <div class="text-center">
+        <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+         <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span> <span class="text-white/90 text-sm font-medium">Launch in 1-2 Minutes • No Credit Card Required</span>
+        </div>
+        <h1 id="hero-title" class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">Create a Website for Free Online<br class="hidden md:block">
+          — No Coding Required</h1>
+        <p class="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto mb-8">Build a professional website in minutes using free tools. No coding skills needed, no credit card required. Just follow our simple steps!</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+         <button id="cta-button" onclick="document.getElementById('steps-section').scrollIntoView({behavior: 'smooth'})" class="bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-dark font-bold py-4 px-8 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 text-lg"> 🚀 Start Building Your Website Now </button> <button onclick="navigateTo('blog')" class="bg-white/10 hover:bg-white/20 text-white font-semibold py-4 px-8 rounded-xl border border-white/30 transition-all duration-300"> 📚 Read Our Guides </button>
+        </div>
+       </div>
+      </div>
+      <div class="absolute bottom-0 left-0 right-0">
+       <svg viewbox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#f8fafc" />
+       </svg>
+      </div>
+     </section><!-- Features Callout -->
+     <section class="py-12 bg-light">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+       <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl p-6 border border-indigo-200 text-center">
+         <div class="w-16 h-16 bg-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <span class="text-3xl">⚡</span>
+         </div>
+         <h3 class="font-display font-bold text-xl mb-2 text-dark">Launch in Minutes</h3>
+         <p class="text-gray-600">Build and publish your website in just 1-2 minutes with our step-by-step guide.</p>
+        </div>
+        <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-2xl p-6 border border-cyan-200 text-center">
+         <div class="w-16 h-16 bg-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <span class="text-3xl">💰</span>
+         </div>
+         <h3 class="font-display font-bold text-xl mb-2 text-dark">100% Free</h3>
+         <p class="text-gray-600">No hidden costs, no credit card required. Everything you need is completely free.</p>
+        </div>
+        <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 border border-amber-200 text-center">
+         <div class="w-16 h-16 bg-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <span class="text-3xl">🎨</span>
+         </div>
+         <h3 class="font-display font-bold text-xl mb-2 text-dark">No Coding Needed</h3>
+         <p class="text-gray-600">AI generates the code for you. Just copy, paste, and publish!</p>
+        </div>
+       </div>
+      </div>
+     </section><!-- Step by Step Guide -->
+     <section id="steps-section" class="py-16 bg-white">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+       <div class="text-center mb-12">
+        <span class="bg-indigo-100 text-indigo-700 px-4 py-1 rounded-full text-sm font-semibold">STEP-BY-STEP GUIDE</span>
+        <h2 class="font-display text-3xl md:text-4xl font-bold mt-4 mb-4 text-dark">How to Create a Free Website</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">Follow these 6 simple steps to build and publish your professional website today.</p>
+       </div>
+       <div class="space-y-6">
+        <!-- Step 1 -->
+        <div class="card-gradient rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+         <div class="step-number w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0">
+          <span class="text-white font-display font-bold text-2xl">1</span>
+         </div>
+         <div class="flex-1">
+          <h3 class="font-display font-bold text-xl mb-2 text-dark">Create a Free Canva Account</h3>
+          <p class="text-gray-600 mb-3">Go to <strong>canva.com</strong> and sign up for a free account. You can use your email, Google, or Facebook to register.</p>
+          <div class="bg-indigo-50 rounded-lg p-4 border-l-4 border-indigo-500">
+           <p class="text-sm text-indigo-800">💡 <strong>Tip:</strong> Canva is completely free to use. The AI website builder is included in the free plan!</p>
+          </div>
+         </div>
+        </div><!-- Step 2 -->
+        <div class="card-gradient rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+         <div class="step-number w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0">
+          <span class="text-white font-display font-bold text-2xl">2</span>
+         </div>
+         <div class="flex-1">
+          <h3 class="font-display font-bold text-xl mb-2 text-dark">Ask Canva AI to Generate Your Website</h3>
+          <p class="text-gray-600 mb-3">Use Canva's AI assistant to describe your website. Say something like: "Create a modern business website for a bakery" and watch the magic happen!</p>
+          <div class="bg-cyan-50 rounded-lg p-4 border-l-4 border-cyan-500">
+           <p class="text-sm text-cyan-800">🎯 <strong>Pro Tip:</strong> Be specific about your industry, colors, and style for better results.</p>
+          </div>
+         </div>
+        </div><!-- Step 3 -->
+        <div class="card-gradient rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+         <div class="step-number w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0">
+          <span class="text-white font-display font-bold text-2xl">3</span>
+         </div>
+         <div class="flex-1">
+          <h3 class="font-display font-bold text-xl mb-2 text-dark">Copy the HTML Code</h3>
+          <p class="text-gray-600 mb-3">Once satisfied with your design, export or copy the HTML code from Canva. This is the code that makes your website work.</p>
+          <div class="bg-amber-50 rounded-lg p-4 border-l-4 border-amber-500">
+           <p class="text-sm text-amber-800">📋 <strong>Note:</strong> Don't worry about understanding the code — you just need to copy and paste it!</p>
+          </div>
+         </div>
+        </div><!-- Step 4 -->
+        <div class="card-gradient rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+         <div class="step-number w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0">
+          <span class="text-white font-display font-bold text-2xl">4</span>
+         </div>
+         <div class="flex-1">
+          <h3 class="font-display font-bold text-xl mb-2 text-dark">Create a Free GitHub Account &amp; Repository</h3>
+          <p class="text-gray-600 mb-3">Go to <strong>github.com</strong> and create a free account. Then create a new repository (think of it as a folder for your website files).</p>
+          <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
+           <p class="text-sm text-purple-800">🔒 <strong>Why GitHub?</strong> It's free, reliable, and can host your website for free with GitHub Pages!</p>
+          </div>
+         </div>
+        </div><!-- Step 5 -->
+        <div class="card-gradient rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+         <div class="step-number w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0">
+          <span class="text-white font-display font-bold text-2xl">5</span>
+         </div>
+         <div class="flex-1">
+          <h3 class="font-display font-bold text-xl mb-2 text-dark">Paste Code in index.html</h3>
+          <p class="text-gray-600 mb-3">Create a new file called <strong>index.html</strong> in your repository and paste the HTML code you copied from Canva. Save the file.</p>
+          <div class="bg-green-50 rounded-lg p-4 border-l-4 border-green-500">
+           <p class="text-sm text-green-800">✅ <strong>Important:</strong> The file must be named exactly "index.html" — this is the main page of your website.</p>
+          </div>
+         </div>
+        </div><!-- Step 6 -->
+        <div class="card-gradient rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+         <div class="step-number w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0">
+          <span class="text-white font-display font-bold text-2xl">6</span>
+         </div>
+         <div class="flex-1">
+          <h3 class="font-display font-bold text-xl mb-2 text-dark">Connect Your Custom Domain</h3>
+          <p class="text-gray-600 mb-3">Enable GitHub Pages in your repository settings. Then connect your custom domain (like yourbusiness.com) to make it official!</p>
+          <div class="bg-rose-50 rounded-lg p-4 border-l-4 border-rose-500">
+           <p class="text-sm text-rose-800">🌐 <strong>Bonus:</strong> You can also use the free GitHub URL (username.github.io) if you don't have a domain yet.</p>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="text-center mt-12">
+        <div class="inline-flex items-center bg-gradient-to-r from-green-100 to-emerald-100 rounded-xl px-6 py-4 border border-green-200">
+         <span class="text-4xl mr-4">🎉</span>
+         <div class="text-left">
+          <p class="font-display font-bold text-green-800">Congratulations!</p>
+          <p class="text-green-700">Your website is now live on the internet!</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section><!-- Blog Preview -->
+     <section class="py-16 bg-gradient-to-b from-gray-50 to-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+       <div class="text-center mb-12">
+        <span class="bg-cyan-100 text-cyan-700 px-4 py-1 rounded-full text-sm font-semibold">LEARN MORE</span>
+        <h2 class="font-display text-3xl md:text-4xl font-bold mt-4 mb-4 text-dark">Latest Articles &amp; Guides</h2>
+        <p class="text-xl text-gray-600">Deep dive into website building with our helpful resources.</p>
+       </div>
+       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 cursor-pointer" onclick="navigateTo('blog')">
+         <div class="h-40 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+          <span class="text-6xl">📝</span>
+         </div>
+         <div class="p-6">
+          <span class="text-xs font-semibold text-indigo-600 uppercase tracking-wide">Guide</span>
+          <h3 class="font-display font-bold text-lg mt-2 mb-2 text-dark">How to Create a Free Website Online Without Coding</h3>
+          <p class="text-gray-600 text-sm">Complete beginner's guide to building your first website using free tools...</p>
+         </div>
+        </article>
+        <article class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 cursor-pointer" onclick="navigateTo('blog')">
+         <div class="h-40 bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
+          <span class="text-6xl">🛠️</span>
+         </div>
+         <div class="p-6">
+          <span class="text-xs font-semibold text-cyan-600 uppercase tracking-wide">Tools</span>
+          <h3 class="font-display font-bold text-lg mt-2 mb-2 text-dark">5 Free Tools to Launch Your First Website Fast</h3>
+          <p class="text-gray-600 text-sm">Discover the best free resources for building websites without spending a dime...</p>
+         </div>
+        </article>
+        <article class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 cursor-pointer" onclick="navigateTo('email')">
+         <div class="h-40 bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+          <span class="text-6xl">📧</span>
+         </div>
+         <div class="p-6">
+          <span class="text-xs font-semibold text-amber-600 uppercase tracking-wide">Email</span>
+          <h3 class="font-display font-bold text-lg mt-2 mb-2 text-dark">Free Professional Email Setup</h3>
+          <p class="text-gray-600 text-sm">Get a professional email like contact@yourdomain.com completely free...</p>
+         </div>
+        </article>
+       </div>
+       <div class="text-center mt-10">
+        <button onclick="navigateTo('blog')" class="bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 text-white font-semibold py-3 px-8 rounded-xl shadow-lg transition-all duration-300"> View All Articles → </button>
+       </div>
+      </div>
+     </section><!-- CTA Section -->
+     <section class="gradient-bg py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+       <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Ready to Build Your Free Website?</h2>
+       <p class="text-xl text-white/80 mb-8">Join thousands who've created professional websites without coding or spending money.</p><button onclick="document.getElementById('steps-section').scrollIntoView({behavior: 'smooth'})" class="bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-dark font-bold py-4 px-10 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 text-lg"> 🚀 Start Now — It's Free! </button>
+      </div>
+</section>
+    </div><!-- BLOG PAGE -->
+    <div id="page-blog" class="page">
+     <section class="gradient-bg py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+       <h1 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">Blog &amp; Articles</h1>
+       <p class="text-xl text-white/80">Learn everything about creating free websites online</p>
+      </div>
+     </section>
+     <section class="py-16 bg-light">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+       <!-- Article 1 -->
+       <article class="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-gray-100">
+        <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs font-semibold">COMPLETE GUIDE</span>
+        <h2 class="font-display text-2xl md:text-3xl font-bold mt-4 mb-4 text-dark">How to Create a Free Website Online Without Coding</h2>
+        <p class="text-gray-600 mb-6">Creating a website used to require expensive developers or complex coding knowledge. Not anymore! With modern tools like <strong>Canva AI</strong> and <strong>GitHub Pages</strong>, anyone can build a professional website in minutes.</p>
+        <h3 class="font-display font-bold text-xl mb-3 text-dark">Why Build a Free Website?</h3>
+        <ul class="space-y-2 mb-6">
+         <li class="flex items-start"><span class="text-green-500 mr-2">✓</span><span class="text-gray-600">Establish your online presence without budget constraints</span></li>
+         <li class="flex items-start"><span class="text-green-500 mr-2">✓</span><span class="text-gray-600">Test your business idea before investing money</span></li>
+         <li class="flex items-start"><span class="text-green-500 mr-2">✓</span><span class="text-gray-600">Learn web basics while building something real</span></li>
+         <li class="flex items-start"><span class="text-green-500 mr-2">✓</span><span class="text-gray-600">Scale up later when you're ready</span></li>
+        </ul>
+        <div class="bg-gradient-to-r from-indigo-50 to-cyan-50 rounded-xl p-6 border border-indigo-100">
+         <p class="font-semibold text-indigo-800 mb-2">🎯 Key Takeaway</p>
+         <p class="text-gray-700">You don't need to be a developer to create a website. AI tools generate the code, and free hosting platforms make it live. All you need is an idea!</p>
+        </div>
+       </article><!-- Article 2 -->
+       <article class="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-gray-100">
+        <span class="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-xs font-semibold">TOOLS</span>
+        <h2 class="font-display text-2xl md:text-3xl font-bold mt-4 mb-4 text-dark">5 Free Tools to Launch Your First Website Fast</h2>
+        <div class="space-y-4 mb-6">
+         <div class="flex items-start p-4 bg-gray-50 rounded-xl">
+          <span class="text-2xl mr-4">1️⃣</span>
+          <div>
+           <h4 class="font-bold text-dark">Canva</h4>
+           <p class="text-gray-600 text-sm">AI-powered website design and code generation. Perfect for beginners.</p>
+          </div>
+         </div>
+         <div class="flex items-start p-4 bg-gray-50 rounded-xl">
+          <span class="text-2xl mr-4">2️⃣</span>
+          <div>
+           <h4 class="font-bold text-dark">GitHub Pages</h4>
+           <p class="text-gray-600 text-sm">Free hosting with custom domain support. Reliable and fast.</p>
+          </div>
+         </div>
+         <div class="flex items-start p-4 bg-gray-50 rounded-xl">
+          <span class="text-2xl mr-4">3️⃣</span>
+          <div>
+           <h4 class="font-bold text-dark">Zoho Mail</h4>
+           <p class="text-gray-600 text-sm">Free professional email with your domain. 1GB storage included.</p>
+          </div>
+         </div>
+         <div class="flex items-start p-4 bg-gray-50 rounded-xl">
+          <span class="text-2xl mr-4">4️⃣</span>
+          <div>
+           <h4 class="font-bold text-dark">Cloudflare</h4>
+           <p class="text-gray-600 text-sm">Free CDN and security. Makes your site faster and safer.</p>
+          </div>
+         </div>
+         <div class="flex items-start p-4 bg-gray-50 rounded-xl">
+          <span class="text-2xl mr-4">5️⃣</span>
+          <div>
+           <h4 class="font-bold text-dark">Google Search Console</h4>
+           <p class="text-gray-600 text-sm">Free SEO tools to get your site found on Google.</p>
+          </div>
+         </div>
+        </div>
+       </article><!-- Article 3 -->
+       <article class="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-gray-100">
+        <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold">TUTORIAL</span>
+        <h2 class="font-display text-2xl md:text-3xl font-bold mt-4 mb-4 text-dark">Step-by-Step Guide: Canva AI + GitHub</h2>
+        <p class="text-gray-600 mb-6">This detailed walkthrough shows you exactly how to combine Canva's AI website builder with GitHub Pages for free hosting.</p>
+        <div class="space-y-4 mb-6">
+         <div class="border-l-4 border-indigo-500 pl-4">
+          <h4 class="font-bold text-dark">Phase 1: Design Your Website</h4>
+          <p class="text-gray-600 text-sm">Open Canva, access the AI assistant, and describe your ideal website. Be specific about colors, style, and content.</p>
+         </div>
+         <div class="border-l-4 border-cyan-500 pl-4">
+          <h4 class="font-bold text-dark">Phase 2: Export the Code</h4>
+          <p class="text-gray-600 text-sm">Once happy with your design, export or copy the generated HTML code. This is your complete website file.</p>
+         </div>
+         <div class="border-l-4 border-amber-500 pl-4">
+          <h4 class="font-bold text-dark">Phase 3: Set Up GitHub</h4>
+          <p class="text-gray-600 text-sm">Create a repository, add index.html, paste your code, and enable GitHub Pages in settings.</p>
+         </div>
+         <div class="border-l-4 border-green-500 pl-4">
+          <h4 class="font-bold text-dark">Phase 4: Go Live!</h4>
+          <p class="text-gray-600 text-sm">Your site is now live! Optionally connect a custom domain for a professional touch.</p>
+         </div>
+        </div>
+       </article><!-- Article 4 -->
+       <article class="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-gray-100">
+        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">TIPS</span>
+        <h2 class="font-display text-2xl md:text-3xl font-bold mt-4 mb-4 text-dark">Tips for Beginners to Make a Website in Minutes</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+         <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-5 border border-green-100">
+          <span class="text-2xl mb-2 block">💡</span>
+          <h4 class="font-bold text-dark mb-1">Start Simple</h4>
+          <p class="text-gray-600 text-sm">Don't overcomplicate your first website. A clean, simple design works best.</p>
+         </div>
+         <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-5 border border-blue-100">
+          <span class="text-2xl mb-2 block">🎨</span>
+          <h4 class="font-bold text-dark mb-1">Be Specific with AI</h4>
+          <p class="text-gray-600 text-sm">The more details you give the AI, the better your website will match your vision.</p>
+         </div>
+         <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-5 border border-amber-100">
+          <span class="text-2xl mb-2 block">📱</span>
+          <h4 class="font-bold text-dark mb-1">Test on Mobile</h4>
+          <p class="text-gray-600 text-sm">Most visitors use phones. Make sure your site looks good on all devices.</p>
+         </div>
+         <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-5 border border-purple-100">
+          <span class="text-2xl mb-2 block">🔄</span>
+          <h4 class="font-bold text-dark mb-1">Iterate &amp; Improve</h4>
+          <p class="text-gray-600 text-sm">Your first version doesn't have to be perfect. You can always update it later.</p>
+         </div>
+        </div>
+       </article>
+       <div class="text-center">
+        <button onclick="navigateTo('email')" class="bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 text-white font-semibold py-3 px-8 rounded-xl shadow-lg transition-all duration-300"> 📧 Set Up Free Professional Email → </button>
+       </div>
+      </div>
+     </section>
+    </div><!-- FREE EMAIL PAGE -->
+    <div id="page-email" class="page">
+     <section class="gradient-bg py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+       <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+        <span class="text-2xl mr-2">📧</span> <span class="text-white/90 text-sm font-medium">100% Free • No Credit Card Required</span>
+       </div>
+       <h1 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">Free Professional Email Setup</h1>
+       <p class="text-xl text-white/80">Get a professional email like contact@yourdomain.com with Zoho Mail</p>
+      </div>
+     </section>
+     <section class="py-16 bg-light">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+       <!-- Benefits Box -->
+       <div class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-8 mb-12 text-white">
+        <h2 class="font-display text-2xl font-bold mb-6 text-center">Why You Need a Professional Email</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+         <div class="text-center">
+          <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
+           <span class="text-3xl">✨</span>
+          </div>
+          <h3 class="font-bold mb-1">Build Trust</h3>
+          <p class="text-white/80 text-sm">contact@yourbusiness.com looks more professional than yourname@gmail.com</p>
+         </div>
+         <div class="text-center">
+          <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
+           <span class="text-3xl">🎯</span>
+          </div>
+          <h3 class="font-bold mb-1">Brand Identity</h3>
+          <p class="text-white/80 text-sm">Every email reinforces your domain and business name</p>
+         </div>
+         <div class="text-center">
+          <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
+           <span class="text-3xl">💰</span>
+          </div>
+          <h3 class="font-bold mb-1">Completely Free</h3>
+          <p class="text-white/80 text-sm">Zoho Mail's free plan includes 1GB storage and full features</p>
+         </div>
+        </div>
+       </div><!-- Step by Step -->
+       <h2 class="font-display text-3xl font-bold text-center mb-8 text-dark">How to Set Up Free Email with Zoho Mail</h2>
+       <div class="space-y-6">
+        <!-- Step 1 -->
+        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+         <div class="step-number w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0">
+          <span class="text-white font-display font-bold text-2xl">1</span>
+         </div>
+         <div class="flex-1">
+          <h3 class="font-display font-bold text-xl mb-2 text-dark">Go to Zoho Mail Free Plan</h3>
+          <p class="text-gray-600 mb-3">Visit <strong>zoho.com/mail</strong> and click on the "Free Plan" option. The free tier includes everything you need for a professional email.</p>
+          <div class="bg-indigo-50 rounded-lg p-4 border-l-4 border-indigo-500">
+           <p class="text-sm text-indigo-800">💡 <strong>Free Plan Includes:</strong> 1 GB storage, web access, mobile apps, and up to 5 users!</p>
+          </div>
+         </div>
+        </div><!-- Step 2 -->
+        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+         <div class="step-number w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0">
+          <span class="text-white font-display font-bold text-2xl">2</span>
+         </div>
+         <div class="flex-1">
+          <h3 class="font-display font-bold text-xl mb-2 text-dark">Enter Your Domain Name</h3>
+          <p class="text-gray-600 mb-3">Enter the domain you want to use for your email (e.g., yourbusiness.com). This is the same domain as your website.</p>
+          <div class="bg-cyan-50 rounded-lg p-4 border-l-4 border-cyan-500">
+           <p class="text-sm text-cyan-800">🌐 <strong>Note:</strong> You need to own a domain name. You can purchase one from Namecheap, Google Domains, or similar registrars.</p>
+          </div>
+         </div>
+        </div><!-- Step 3 -->
+        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+         <div class="step-number w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0">
+          <span class="text-white font-display font-bold text-2xl">3</span>
+         </div>
+         <div class="flex-1">
+          <h3 class="font-display font-bold text-xl mb-2 text-dark">Verify Your Domain</h3>
+          <p class="text-gray-600 mb-3">Zoho will ask you to verify ownership of your domain. Add a <strong>TXT record</strong> or <strong>CNAME record</strong> to your domain's DNS settings.</p>
+          <div class="bg-amber-50 rounded-lg p-4 border-l-4 border-amber-500">
+           <p class="text-sm text-amber-800">⚙️ <strong>How to:</strong> Log into your domain registrar, go to DNS settings, and add the record Zoho provides. It usually takes 5-30 minutes to verify.</p>
+          </div>
+         </div>
+        </div><!-- Step 4 -->
+        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+         <div class="step-number w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0">
+          <span class="text-white font-display font-bold text-2xl">4</span>
+         </div>
+         <div class="flex-1">
+          <h3 class="font-display font-bold text-xl mb-2 text-dark">Create Your Email Account</h3>
+          <p class="text-gray-600 mb-3">Once verified, create your first email address. Popular choices include:</p>
+          <div class="grid grid-cols-2 gap-2 mb-3">
+           <div class="bg-gray-50 rounded-lg p-3 text-center">
+            <code class="text-indigo-600 font-semibold">contact@</code>
+           </div>
+           <div class="bg-gray-50 rounded-lg p-3 text-center">
+            <code class="text-indigo-600 font-semibold">hello@</code>
+           </div>
+           <div class="bg-gray-50 rounded-lg p-3 text-center">
+            <code class="text-indigo-600 font-semibold">info@</code>
+           </div>
+           <div class="bg-gray-50 rounded-lg p-3 text-center">
+            <code class="text-indigo-600 font-semibold">yourname@</code>
+           </div>
+          </div>
+          <div class="bg-green-50 rounded-lg p-4 border-l-4 border-green-500">
+           <p class="text-sm text-green-800">✅ <strong>Example:</strong> contact@buildsitefree.com is our professional email address!</p>
+          </div>
+         </div>
+        </div><!-- Step 5 -->
+        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+         <div class="step-number w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0">
+          <span class="text-white font-display font-bold text-2xl">5</span>
+         </div>
+         <div class="flex-1">
+          <h3 class="font-display font-bold text-xl mb-2 text-dark">Connect Email to Your Website</h3>
+          <p class="text-gray-600 mb-3">Add your professional email to your website's Contact page, footer, or use it for notifications and form submissions.</p>
+          <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
+           <p class="text-sm text-purple-800">🔗 <strong>Pro Tip:</strong> Set up email forwarding to your personal email so you never miss a message!</p>
+          </div>
+         </div>
+        </div>
+       </div><!-- Summary Box -->
+       <div class="mt-12 bg-gradient-to-r from-green-100 to-emerald-100 rounded-2xl p-8 border border-green-200">
+        <div class="flex items-center justify-center mb-4">
+         <span class="text-5xl">🎉</span>
+        </div>
+        <h3 class="font-display text-2xl font-bold text-center text-green-800 mb-4">What You Get (100% Free!)</h3>
+        <div class="grid md:grid-cols-3 gap-4 text-center">
+         <div>
+          <p class="text-3xl font-bold text-green-700">1 GB</p>
+          <p class="text-green-600">Email Storage</p>
+         </div>
+         <div>
+          <p class="text-3xl font-bold text-green-700">5</p>
+          <p class="text-green-600">User Accounts</p>
+         </div>
+         <div>
+          <p class="text-3xl font-bold text-green-700">$0</p>
+          <p class="text-green-600">Forever Free</p>
+         </div>
+        </div>
+       </div>
+       <div class="text-center mt-10">
+        <button onclick="navigateTo('home')" class="bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 text-white font-semibold py-3 px-8 rounded-xl shadow-lg transition-all duration-300"> ← Back to Website Guide </button>
+       </div>
+      </div>
+     </section>
+    </div><!-- ABOUT PAGE -->
+    <div id="page-about" class="page">
+     <section class="gradient-bg py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+       <h1 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">About Us</h1>
+       <p class="text-xl text-white/80">Empowering everyone to build their online presence</p>
+      </div>
+     </section>
+     <section class="py-16 bg-light">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+       <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 border border-gray-100">
+        <div class="text-center mb-8">
+         <div class="w-24 h-24 bg-gradient-to-br from-indigo-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4 glow">
+          <span class="text-5xl">🌐</span>
+         </div>
+        </div>
+        <h2 class="font-display text-2xl font-bold mb-4 text-dark">Our Mission</h2>
+        <p class="text-gray-600 mb-6 text-lg">At <strong>BuildSiteFree.com</strong>, we believe everyone deserves an online presence — regardless of budget or technical skills. Our mission is to democratize website creation by showing you how to build professional websites using 100% free tools.</p>
+        <h2 class="font-display text-2xl font-bold mb-4 text-dark">What We Offer</h2>
+        <div class="grid md:grid-cols-2 gap-4 mb-6">
+         <div class="bg-indigo-50 rounded-xl p-5 border border-indigo-100">
+          <h3 class="font-bold text-dark mb-2">📚 Free Guides</h3>
+          <p class="text-gray-600 text-sm">Step-by-step tutorials for creating websites without coding</p>
+         </div>
+         <div class="bg-cyan-50 rounded-xl p-5 border border-cyan-100">
+          <h3 class="font-bold text-dark mb-2">🛠️ Tool Recommendations</h3>
+          <p class="text-gray-600 text-sm">Curated list of the best free website building tools</p>
+         </div>
+         <div class="bg-amber-50 rounded-xl p-5 border border-amber-100">
+          <h3 class="font-bold text-dark mb-2">📧 Email Setup Help</h3>
+          <p class="text-gray-600 text-sm">Instructions for setting up free professional email</p>
+         </div>
+         <div class="bg-green-50 rounded-xl p-5 border border-green-100">
+          <h3 class="font-bold text-dark mb-2">💡 Tips &amp; Best Practices</h3>
+          <p class="text-gray-600 text-sm">Expert advice for beginners entering the web world</p>
+         </div>
+        </div>
+        <h2 class="font-display text-2xl font-bold mb-4 text-dark">Why Free?</h2>
+        <p class="text-gray-600 mb-6">We've seen too many people pay for expensive website builders when free alternatives work just as well. Our content is free because we want to help as many people as possible start their online journey without financial barriers.</p>
+        <div class="bg-gradient-to-r from-indigo-100 to-cyan-100 rounded-xl p-6 border border-indigo-200">
+         <p class="text-center text-indigo-800 font-semibold text-lg">"Everyone deserves a website. Everyone can have one. For free."</p>
+        </div>
+       </div>
+      </div>
+     </section>
+    </div><!-- CONTACT PAGE -->
+    <div id="page-contact" class="page">
+     <section class="gradient-bg py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+       <h1 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">Contact Us</h1>
+       <p class="text-xl text-white/80">We'd love to hear from you</p>
+      </div>
+     </section>
+     <section class="py-16 bg-light">
+      <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+       <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+        <div class="text-center mb-8">
+         <div class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <span class="text-4xl">📬</span>
+         </div>
+         <h2 class="font-display text-2xl font-bold text-dark">Get in Touch</h2>
+         <p class="text-gray-600 mt-2">Have questions or suggestions? We're here to help!</p>
+        </div>
+        <form id="contact-form" class="space-y-6">
+         <div>
+          <label for="name" class="block text-sm font-semibold text-dark mb-2">Your Name</label> <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all outline-none" placeholder="John Doe">
+         </div>
+         <div>
+          <label for="email" class="block text-sm font-semibold text-dark mb-2">Email Address</label> <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all outline-none" placeholder="you@example.com">
+         </div>
+         <div>
+          <label for="message" class="block text-sm font-semibold text-dark mb-2">Message</label> <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all outline-none resize-none" placeholder="How can we help you?"></textarea>
+         </div><button type="submit" class="w-full bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 text-white font-bold py-4 rounded-xl shadow-lg transition-all duration-300"> Send Message </button>
+        </form>
+        <div id="form-success" class="hidden text-center py-8">
+         <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <span class="text-4xl">✅</span>
+         </div>
+         <h3 class="font-display text-xl font-bold text-green-800 mb-2">Message Sent!</h3>
+         <p class="text-gray-600">Thank you for reaching out. We'll get back to you soon.</p>
+        </div>
+        <div class="mt-8 pt-8 border-t border-gray-100">
+         <p class="text-center text-gray-600 mb-4">Or reach us directly:</p>
+         <div class="flex justify-center">
+          <div class="bg-indigo-50 rounded-xl px-6 py-4 border border-indigo-100">
+           <p class="font-semibold text-indigo-800">📧 contact@buildsitefree.com</p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section>
+    </div><!-- PRIVACY PAGE -->
+    <div id="page-privacy" class="page">
+     <section class="gradient-bg py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+       <h1 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">Privacy Policy</h1>
+       <p class="text-xl text-white/80">How we handle your information</p>
+      </div>
+     </section>
+     <section class="py-16 bg-light">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+       <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 border border-gray-100">
+        <p class="text-gray-500 mb-8">Last updated: January 2025</p>
+        <div class="space-y-8">
+         <div>
+          <h2 class="font-display text-xl font-bold text-dark mb-3">Information We Collect</h2>
+          <p class="text-gray-600">We collect minimal information to improve your experience:</p>
+          <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+           <li>Information you voluntarily provide via contact forms</li>
+           <li>Anonymous usage data (page views, time on site)</li>
+           <li>Technical information (browser type, device type)</li>
+          </ul>
+         </div>
+         <div>
+          <h2 class="font-display text-xl font-bold text-dark mb-3">How We Use Information</h2>
+          <p class="text-gray-600">Your information helps us:</p>
+          <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+           <li>Respond to your questions and messages</li>
+           <li>Improve our content and user experience</li>
+           <li>Understand how visitors use our site</li>
+          </ul>
+         </div>
+         <div>
+          <h2 class="font-display text-xl font-bold text-dark mb-3">Third-Party Services</h2>
+          <p class="text-gray-600">We recommend free tools like Canva, GitHub, and Zoho Mail. Each service has its own privacy policy. We encourage you to review their policies when using their services.</p>
+         </div>
+         <div>
+          <h2 class="font-display text-xl font-bold text-dark mb-3">Cookies</h2>
+          <p class="text-gray-600">We may use cookies to improve your browsing experience. You can disable cookies in your browser settings at any time.</p>
+         </div>
+         <div>
+          <h2 class="font-display text-xl font-bold text-dark mb-3">Your Rights</h2>
+          <p class="text-gray-600">You have the right to:</p>
+          <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+           <li>Request access to your personal data</li>
+           <li>Request deletion of your data</li>
+           <li>Opt out of any communications</li>
+          </ul>
+         </div>
+         <div>
+          <h2 class="font-display text-xl font-bold text-dark mb-3">Contact Us</h2>
+          <p class="text-gray-600">For privacy-related questions, contact us at <strong>contact@buildsitefree.com</strong></p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section>
+    </div><!-- DISCLAIMER PAGE -->
+    <div id="page-disclaimer" class="page">
+     <section class="gradient-bg py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+       <h1 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">Disclaimer</h1>
+       <p class="text-xl text-white/80">Important information about our content</p>
+      </div>
+     </section>
+     <section class="py-16 bg-light">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+       <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 border border-gray-100">
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-6 mb-8">
+         <div class="flex items-start">
+          <span class="text-3xl mr-4">⚠️</span>
+          <div>
+           <h3 class="font-bold text-amber-800 mb-2">Educational Purposes Only</h3>
+           <p class="text-amber-700">The content on BuildSiteFree.com is provided for educational and informational purposes only. We are not responsible for any outcomes from following our guides.</p>
+          </div>
+         </div>
+        </div>
+        <div class="space-y-8">
+         <div>
+          <h2 class="font-display text-xl font-bold text-dark mb-3">No Guarantees</h2>
+          <p class="text-gray-600">While we strive to provide accurate and up-to-date information, we make no guarantees about the completeness, reliability, or accuracy of our content. Free tools and services mentioned may change their features, pricing, or availability at any time.</p>
+         </div>
+         <div>
+          <h2 class="font-display text-xl font-bold text-dark mb-3">Third-Party Tools</h2>
+          <p class="text-gray-600">We recommend various third-party tools (Canva, GitHub, Zoho Mail, etc.) but have no affiliation with or control over these services. Their terms, conditions, and features are subject to change. Always review the current terms of any service before using it.</p>
+         </div>
+         <div>
+          <h2 class="font-display text-xl font-bold text-dark mb-3">No Credit Card Required</h2>
+          <p class="text-gray-600">All tools and methods we recommend in our guides are free to use and do not require a credit card. However, these services may offer paid upgrades. We only focus on the free tiers and features.</p>
+         </div>
+         <div>
+          <h2 class="font-display text-xl font-bold text-dark mb-3">Not Professional Advice</h2>
+          <p class="text-gray-600">Our content is not professional web development, legal, or business advice. For specific professional needs, please consult with qualified professionals in your area.</p>
+         </div>
+         <div>
+          <h2 class="font-display text-xl font-bold text-dark mb-3">Results May Vary</h2>
+          <p class="text-gray-600">The results you achieve may differ based on your specific situation, technical skills, and how you apply the information. We cannot guarantee any specific outcomes from using our guides.</p>
+         </div>
+         <div class="bg-green-50 border border-green-200 rounded-xl p-6">
+          <div class="flex items-start">
+           <span class="text-3xl mr-4">✅</span>
+           <div>
+            <h3 class="font-bold text-green-800 mb-2">Our Commitment</h3>
+            <p class="text-green-700">We're committed to helping you build your online presence for free. We update our content regularly and welcome your feedback to improve our guides.</p>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section>
+    </div>
+   </main><!-- Footer -->
+   <footer class="gradient-bg text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid md:grid-cols-4 gap-8 mb-8">
+      <div>
+       <div class="flex items-center space-x-2 mb-4">
+        <div class="w-10 h-10 bg-gradient-to-br from-indigo-400 to-cyan-400 rounded-lg flex items-center justify-center">
+         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+         </svg>
+        </div><span class="font-display font-bold text-lg">BuildSiteFree.com</span>
+       </div>
+       <p class="text-white/70 text-sm">Create professional websites for free. No coding required.</p>
+      </div>
+      <div>
+       <h4 class="font-display font-bold mb-4">Quick Links</h4>
+       <ul class="space-y-2">
+        <li><a href="#" onclick="navigateTo('home')" class="text-white/70 hover:text-white transition-colors text-sm">Home</a></li>
+        <li><a href="#" onclick="navigateTo('blog')" class="text-white/70 hover:text-white transition-colors text-sm">Blog</a></li>
+        <li><a href="#" onclick="navigateTo('email')" class="text-white/70 hover:text-white transition-colors text-sm">Free Email Setup</a></li>
+        <li><a href="#" onclick="navigateTo('about')" class="text-white/70 hover:text-white transition-colors text-sm">About Us</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-display font-bold mb-4">Resources</h4>
+       <ul class="space-y-2">
+        <li><a href="https://www.canva.com" target="_blank" rel="noopener noreferrer" class="text-white/70 hover:text-white transition-colors text-sm">Canva</a></li>
+        <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-white/70 hover:text-white transition-colors text-sm">GitHub</a></li>
+        <li><a href="https://www.zoho.com/mail" target="_blank" rel="noopener noreferrer" class="text-white/70 hover:text-white transition-colors text-sm">Zoho Mail</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-display font-bold mb-4">Legal</h4>
+<ul class="space-y-2">
+        <li><a href="#" onclick="navigateTo('privacy')" class="text-white/70 hover:text-white transition-colors text-sm">Privacy Policy</a></li>
+        <li><a href="#" onclick="navigateTo('disclaimer')" class="text-white/70 hover:text-white transition-colors text-sm">Disclaimer</a></li>
+        <li><a href="#" onclick="navigateTo('contact')" class="text-white/70 hover:text-white transition-colors text-sm">Contact</a></li>
+       </ul>
+      </div>
+     </div>
+     <div class="border-t border-white/20 pt-8 text-center">
+      <p class="text-white/60 text-sm">© 2026 BuildSiteFree.com. All rights reserved. Made with ❤️ for beginners everywhere.</p>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      site_title: 'BuildSiteFree.com',
+      hero_title: 'Create a Website for Free Online — No Coding Required',
+      cta_button_text: '🚀 Start Building Your Website Now',
+      background_color: '#1e1b4b',
+      surface_color: '#ffffff',
+      text_color: '#1e1b4b',
+      primary_action_color: '#f59e0b',
+      secondary_action_color: '#6366f1'
+    };
+
+    // Navigation function
+    function navigateTo(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + page).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+      menu.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    }
+
+    // Contact form handling
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      this.classList.add('hidden');
+      document.getElementById('form-success').classList.remove('hidden');
+    });
+
+    // Element SDK initialization
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig: defaultConfig,
+        onConfigChange: async function(config) {
+          // Update site title
+          const siteTitle = document.getElementById('site-title');
+          if (siteTitle) siteTitle.textContent = config.site_title || defaultConfig.site_title;
+
+          // Update hero title
+          const heroTitle = document.getElementById('hero-title');
+          if (heroTitle) heroTitle.innerHTML = (config.hero_title || defaultConfig.hero_title).replace('—', '<br class="hidden md:block"/>—');
+
+          // Update CTA button text
+          const ctaButton = document.getElementById('cta-button');
+          if (ctaButton) ctaButton.textContent = config.cta_button_text || defaultConfig.cta_button_text;
+
+          // Apply colors
+          const bgColor = config.background_color || defaultConfig.background_color;
+          const surfaceColor = config.surface_color || defaultConfig.surface_color;
+          const textColor = config.text_color || defaultConfig.text_color;
+          const primaryAction = config.primary_action_color || defaultConfig.primary_action_color;
+          const secondaryAction = config.secondary_action_color || defaultConfig.secondary_action_color;
+
+          // Update CSS custom properties for gradient backgrounds
+          document.documentElement.style.setProperty('--bg-color', bgColor);
+          
+          // Update gradient backgrounds
+          document.querySelectorAll('.gradient-bg').forEach(el => {
+            el.style.background = `linear-gradient(135deg, ${bgColor} 0%, ${adjustColor(bgColor, 20)} 50%, ${adjustColor(bgColor, 40)} 100%)`;
+          });
+
+          // Update surface/card colors
+          document.querySelectorAll('.card-gradient, .bg-white').forEach(el => {
+            if (el.classList.contains('card-gradient')) {
+              el.style.background = `linear-gradient(145deg, ${surfaceColor} 0%, ${adjustColor(surfaceColor, -5)} 100%)`;
+            }
+          });
+
+          // Update text colors
+          document.querySelectorAll('h1, h2, h3, h4, .text-dark').forEach(el => {
+            if (!el.closest('.gradient-bg') && !el.closest('footer')) {
+              el.style.color = textColor;
+            }
+          });
+
+          // Update primary action buttons
+          document.querySelectorAll('button').forEach(el => {
+            if (el.classList.contains('bg-gradient-to-r') && el.textContent.includes('🚀')) {
+              el.style.background = `linear-gradient(to right, ${primaryAction}, ${adjustColor(primaryAction, 10)})`;
+            }
+          });
+
+          // Update secondary action elements
+          document.querySelectorAll('.step-number').forEach(el => {
+            el.style.background = `linear-gradient(135deg, ${secondaryAction} 0%, ${adjustColor(secondaryAction, 20)} 100%)`;
+          });
+        },
+        mapToCapabilities: function(config) {
+          return {
+            recolorables: [
+              {
+                get: () => config.background_color || defaultConfig.background_color,
+                set: (value) => { config.background_color = value; window.elementSdk.setConfig({ background_color: value }); }
+              },
+              {
+                get: () => config.surface_color || defaultConfig.surface_color,
+                set: (value) => { config.surface_color = value; window.elementSdk.setConfig({ surface_color: value }); }
+              },
+              {
+                get: () => config.text_color || defaultConfig.text_color,
+                set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+              },
+              {
+                get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                set: (value) => { config.primary_action_color = value; window.elementSdk.setConfig({ primary_action_color: value }); }
+              },
+              {
+                get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                set: (value) => { config.secondary_action_color = value; window.elementSdk.setConfig({ secondary_action_color: value }); }
+              }
+            ],
+            borderables: [],
+            fontEditable: undefined,
+            fontSizeable: undefined
+          };
+        },
+        mapToEditPanelValues: function(config) {
+          return new Map([
+            ['site_title', config.site_title || defaultConfig.site_title],
+            ['hero_title', config.hero_title || defaultConfig.hero_title],
+            ['cta_button_text', config.cta_button_text || defaultConfig.cta_button_text]
+          ]);
+        }
+      });
+    }
+
+    // Helper function to adjust color brightness
+    function adjustColor(hex, percent) {
+      const num = parseInt(hex.replace('#', ''), 16);
+      const amt = Math.round(2.55 * percent);
+      const R = (num >> 16) + amt;
+      const G = (num >> 8 & 0x00FF) + amt;
+      const B = (num & 0x0000FF) + amt;
+      return '#' + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 + (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d9aa745a1205b2e',t:'MTc3MzA2NTMyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
