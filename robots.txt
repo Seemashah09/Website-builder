@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://seemashah09.github.io/Website-builder/sitemap.xml
